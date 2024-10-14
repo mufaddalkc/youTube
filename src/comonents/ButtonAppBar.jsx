@@ -44,14 +44,17 @@ export default function ButtonAppBar() {
           >
             <Paper
               component="form"
+              variant="outlined"
               sx={{
                 borderRadius: 20,
-                border: "1px solid #e3e3e3",
+                border: "1px solid #808080",
                 pl: 2,
                 boxShadow: "none",
-                width: "400px",
+                width: "600px",
                 display: "flex",
                 alignItems: "center",
+                backgroundColor: "#000",
+                height: 40,
               }}
             >
               <input
@@ -59,15 +62,32 @@ export default function ButtonAppBar() {
                 placeholder="Search..."
                 style={{
                   padding: "8px",
-                  borderRadius: "20px",
                   border: "none",
-                  width: "85%",
+                  width: "90%",
                   outline: "none",
+                  fontSize: 16,
+                  fontWeight: 400,
+                  color: "#fff",
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                  background: "none",
+                  backgroundImage: "none",
+                  borderRadius: "20px 0 0 20px", // Add this style
                 }}
               />
-              <IconButton type="submit" sx={{ p: "10px", color: "#808080" }}>
+              <div
+                style={{
+                  width: 1,
+                  height: 30,
+                  backgroundColor: "#808080",
+                  margin: "5px 0",
+                }}
+              ></div>{" "}
+              <IconButton
+                type="submit"
+                sx={{ p: "10px", color: "#fff", borderRadius: "0 20px 20px 0" }}
+              >
                 {" "}
-                {/* Change SearchIcon color to gray */}
                 <SearchIcon />
               </IconButton>
             </Paper>
