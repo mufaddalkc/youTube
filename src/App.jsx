@@ -7,16 +7,19 @@ import "./App.css";
 function App() {
   return (
     <>
-      <ButtonAppBar />
-      <Box sx={{ display: "flex", height: "100vh" }}>
+      <Box sx={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1 }}>
+        <ButtonAppBar />
+      </Box>
+      <Box sx={{ display: "flex", height: "100vh", marginTop: "64px" }}>
         <Box
           sx={{
             width: "20vw",
             bgcolor: "#f0f0f0",
             position: "fixed",
-            height: "100vh",
+            height: "calc(100vh - 64px)",
             overflowY: "auto",
             zIndex: 1,
+            top: "64px",
           }}
         >
           <Sidebar />
@@ -28,7 +31,6 @@ function App() {
             flexGrow: 1,
             overflowY: "auto",
             padding: 2,
-            // marginTop: "64px",
             bgcolor: "black",
             color: "white",
           }}

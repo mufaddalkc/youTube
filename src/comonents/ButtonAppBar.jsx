@@ -24,8 +24,7 @@ export default function ButtonAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#000000" }}>
-        {" "}
+      <AppBar position="sticky" sx={{ backgroundColor: "#000000", top: 0 }}>
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton

@@ -16,7 +16,6 @@ import Avatar from "@mui/material/Avatar";
 import { styled } from "@mui/material/styles";
 import { blue } from "@mui/material/colors";
 
-// Styled component for ListItemButton
 const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   "&:hover": {
     backgroundColor:
@@ -26,9 +25,8 @@ const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
   },
 }));
 
-// Styled component for ListItemIcon to change icon color
 const StyledListItemIcon = styled(ListItemIcon)({
-  color: "gray", // Set the icon color to gray
+  color: "gray",
 });
 
 export default function Sidebar() {
