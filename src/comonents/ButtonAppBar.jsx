@@ -13,19 +13,25 @@ import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Logo from "../assets/logo.png";
 import { Paper } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export default function ButtonAppBar() {
+  const [searchValue, setSearchValue] = React.useState("");
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#000000" }}>
         {" "}
-        {/* Set AppBar color to black */}
         <Toolbar>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <IconButton
               size="large"
               edge="start"
-              sx={{ mr: 2, color: "#808080" }} // Set MenuIcon color to gray
+              sx={{ mr: 2, color: "#808080" }}
             >
               <MenuIcon />
             </IconButton>
@@ -60,6 +66,8 @@ export default function ButtonAppBar() {
               <input
                 type="text"
                 placeholder="Search..."
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
                 style={{
                   padding: "8px",
                   border: "none",
@@ -72,17 +80,22 @@ export default function ButtonAppBar() {
                   boxShadow: "none",
                   background: "none",
                   backgroundImage: "none",
-                  borderRadius: "20px 0 0 20px", // Add this style
+                  borderRadius: "20px 0 0 20px",
                 }}
               />
-              <div
-                style={{
-                  width: 1,
-                  height: 30,
-                  backgroundColor: "#808080",
-                  margin: "5px 0",
-                }}
-              ></div>{" "}
+              {searchValue && (
+                <IconButton
+                  type="button"
+                  sx={{
+                    p: "10px",
+                    color: "#fff",
+                    borderRadius: "0 20px 20px 0",
+                  }}
+                  onClick={handleClearSearch}
+                >
+                  <ClearIcon />
+                </IconButton>
+              )}
               <IconButton
                 type="submit"
                 sx={{ p: "10px", color: "#fff", borderRadius: "0 20px 20px 0" }}
@@ -97,7 +110,6 @@ export default function ButtonAppBar() {
               sx={{ ml: 2, color: "#808080" }}
             >
               {" "}
-              {/* Change MicIcon color to gray */}
               <MicIcon />
             </IconButton>
           </Box>
@@ -110,7 +122,6 @@ export default function ButtonAppBar() {
               sx={{ ml: 2, color: "#808080" }}
             >
               {" "}
-              {/* Change VideocamIcon color to gray */}
               <VideocamIcon />
             </IconButton>
             <IconButton
@@ -121,12 +132,11 @@ export default function ButtonAppBar() {
             >
               <Badge badgeContent={4} color="error">
                 <NotificationsIcon sx={{ color: "#808080" }} />{" "}
-                {/* Change NotificationsIcon color to gray */}
               </Badge>
             </IconButton>
 
             <Avatar
-              alt="User Name"
+              alt="User  Name"
               src="/path/to/avatar.jpg"
               sx={{ ml: 2, width: 40, height: 40 }}
             />
