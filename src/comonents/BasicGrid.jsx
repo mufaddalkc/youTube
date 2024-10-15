@@ -85,10 +85,11 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1, height: "100vh" }}>
       <Grid container spacing={2}>
-        <Grid size={12}>
+        <Grid item xs={12} md={4}>
           <Grid container spacing={2}>
             {videoItems.map((video, index) => (
-              <Grid size={4} key={index}>
+              // <Grid item size={4} key={index}>
+              <Grid size={{ xs: 12, sm: 6, md: 4, xl: 4 }} key={index}>
                 <VideoItem
                   title={video.title}
                   views={video.views}

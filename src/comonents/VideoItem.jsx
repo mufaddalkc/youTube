@@ -1,12 +1,13 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import Grid2 from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Logo from "../assets/netflix.png";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import { useMediaQuery } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "black",
@@ -14,7 +15,7 @@ const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(1),
   textAlign: "center",
   color: "white",
-  height: 300,
+  height: 300, // Fixed height for uniformity
 }));
 
 const VideoItem = ({ title, views, daysAgo, thumbnail, channelName }) => {
@@ -27,6 +28,8 @@ const VideoItem = ({ title, views, daysAgo, thumbnail, channelName }) => {
     setAnchorEl(null);
   };
 
+  const isMobile = useMediaQuery("(max-width:600px)"); // Check if it's mobile view
+
   return (
     <Item>
       <img
@@ -34,11 +37,13 @@ const VideoItem = ({ title, views, daysAgo, thumbnail, channelName }) => {
         alt="Video Thumbnail"
         style={{ width: "100%", height: 150, objectFit: "cover" }}
       />
-      <Grid2 container spacing={1} sx={{ alignItems: "center" }}>
-        <Grid2 size={2}>
-          <img src={Logo} alt="Logo" style={{ width: 75, height: 75 }} />
-        </Grid2>
-        <Grid2 size={9}>
+      <Grid container spacing={1} sx={{ alignItems: "center" }}>
+        {!isMobile && ( // Hide the logo on mobile view
+          <Grid item xs={12} sm={2}>
+            <img src={Logo} alt="Logo" style={{ width: 75, height: 75 }} />
+          </Grid>
+        )}
+        <Grid item xs={12} sm={9}>
           <Typography
             variant="h5"
             gutterBottom
@@ -55,31 +60,33 @@ const VideoItem = ({ title, views, daysAgo, thumbnail, channelName }) => {
             {channelName}
           </Typography>
           <Typography variant="body2" gutterBottom>
-            {views} views • {daysAgo} days ago{" "}
+            {views} views • {daysAgo} days ago
           </Typography>
-        </Grid2>
-        <Grid2 size={1} sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <MoreVertIcon sx={{ color: "white" }} onClick={handleClick} />
-          <Menu
-            // sx={{
-            //   "& .MuiPaper-root": {
-            //     background: "red",
-            //   },
-            // }}
-            slotProps={{ paper: { sx: { bgcolor: "grey" } } }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
+        </Grid>
+        {!isMobile && (
+          <Grid
+            item
+            xs={12}
+            sm={1}
+            sx={{ display: "flex", justifyContent: "flex-end" }}
           >
-            <MenuItem sx={{ color: "white" }} onClick={handleClose}>
-              Menu Item 1
-            </MenuItem>
-            <MenuItem sx={{ color: "white" }} onClick={handleClose}>
-              Menu Item 2
-            </MenuItem>
-          </Menu>
-        </Grid2>
-      </Grid2>
+            <MoreVertIcon sx={{ color: "white" }} onClick={handleClick} />
+            <Menu
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              slotProps={{ paper: { sx: { bgcolor: "grey" } } }}
+            >
+              <MenuItem sx={{ color: "white" }} onClick={handleClose}>
+                Menu Item 1
+              </MenuItem>
+              <MenuItem sx={{ color: "white" }} onClick={handleClose}>
+                Menu Item 2
+              </MenuItem>
+            </Menu>
+          </Grid>
+        )}
+      </Grid>
     </Item>
   );
 };
